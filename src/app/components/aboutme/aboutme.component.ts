@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-aboutme',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./aboutme.component.scss']
 })
 export class AboutmeComponent {
+
+  perfil:any;
+  urlApi:string = "https://api.github.com/users/JulianNieva";
+
+  constructor(private http:HttpClient) {}
+
+  ngOnInit(): void {
+      this.http.get(this.urlApi).subscribe(res => this.perfil = res);
+  }
 
 }
