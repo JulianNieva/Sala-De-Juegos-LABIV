@@ -1,1 +1,35 @@
-<p>register works!</p>
+<div class="background-image">
+    <div class="container">
+        <div class="card text-center slide-in-blurred-right" >
+            <h4 class="card-title">Registrarse</h4>
+            <img class="card-img-top mx-auto" src="../../../assets/iconos/login.png">
+            <div class="card-body">
+                <p class="card-title">Complete el formulario</p>
+                <form>
+                    <label for="email" class="form-label email-label">Correo</label>
+                    <input type="email" class="form-control input" formControlName="email"/>
+                    <!--<small style="color: red" *ngIf="formLogin.controls['email'].errors?.['required'] && formLogin.controls['email'].touched">
+                        El Correo electrónico es requerido
+                    </small>
+                    <small style="color: red" *ngIf="formLogin.controls['email'].errors?.['email'] && formLogin.controls['email'].touched">
+                        Aseguese de ingresar un email valido
+                    </small>-->
+                    <br>
+                    <label for="clave" class="form-label clave-label">Contraseña</label>
+                    <input type="password" class="form-control input" formControlName="clave"/>
+                    <!--<small style="color: red" *ngIf="formLogin.controls['clave'].errors?.['required'] && formLogin.controls['clave'].touched">
+                      La contraseña es requerida
+                    </small>
+                    <small style="color: red" *ngIf="formLogin.controls['clave'].errors?.['minlength'] && formLogin.controls['clave'].touched">
+                      Debe ingresar al menos 6 caracteres
+                    </small>-->
+                    <br>
+                    <br>
+                  <button class="w-100 btn text-center">
+                    Iniciar Sesión
+                  </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
