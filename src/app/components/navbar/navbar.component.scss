@@ -1,5 +1,11 @@
-.btn{
-    border: none;
+.navbar {
+    backdrop-filter: blur(5px);
+}
+
+.navbar-nav .nav-link {
+    color: #e0b1cb;
+    border-radius: .25rem;
+    margin: 0 0.25em;
 }
 
 .dropdown-toggle::after {
@@ -7,8 +13,26 @@
 }
 
 .dropdown-menu{
+    --bs-dropdown-bg:transparent;
+    --bs-dropdown-color:#ecf0f1;
     border: none;
     --bs-dropdown-link-active-bg:none;
     --bs-dropdown-link-hover-bg:none;
     --bs-dropdown-item-padding-x: 5px;
+}
+
+.dropdown-item{
+    color: #9d4edd;
+}
+
+.nombre{
+    color: white;
+    margin-left: 10px;
+    position: fixed;
+}
+
+.btn{
+    color:aquamarine;
+    border-radius: 5px;
+    background-color: #9d4edd9d;
 }

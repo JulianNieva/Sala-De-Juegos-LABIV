@@ -13,6 +13,7 @@ import * as moment from 'moment';
 export class UserService {
 
   user$: Observable<any>;
+  seLogueo:boolean = false;
 
   constructor(private swal:SwalService,
     private router:Router,
@@ -22,6 +23,7 @@ export class UserService {
       this.user$ = this.afAuth.authState.pipe(
         switchMap(user => {
           if(user) {
+            this.seLogueo = true;
             return this.afStore.doc<any>(`usuarios/${user.uid}`).valueChanges();
           }
           else {
@@ -40,6 +42,7 @@ export class UserService {
   SignOut()
   {
     this.afAuth.signOut().then(() =>{
+      this.seLogueo = false;
       this.swal.MostrarExito("Seras redirigido...","Se ha cerado la sesion con exito!").then(() =>{
         this.router.navigate(['login'])
       })
