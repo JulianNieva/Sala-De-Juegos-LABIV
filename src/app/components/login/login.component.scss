@@ -19,7 +19,7 @@
 
 .card{
     margin-top: 150px;
-    width: 350px;
+    width: 25rem;
     min-height: 250px;
     background: rgba(109, 8, 109, 0.15);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -40,8 +40,18 @@
     font-size: larger;
 }
 
-.btn{
+.btn,.form-label{
     color: aquamarine;
+}
+
+.botones{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    --bs-btn-border-color:aquamarine;
 }
 
 .input{

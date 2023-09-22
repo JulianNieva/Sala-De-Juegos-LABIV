@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "salajuegos-faff5"
+  },
+  "targets": {
+    "salajuegos-faff5": {
+      "hosting": {
+        "Sala-de-juegos": [
+          "salajuegos-faff5"
+        ]
+      }
+    }
   }
 }
