@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  constructor(private router:Router,private formBuilder:FormBuilder,private angularFireAuth:UserService,private mensaje:SwalService) {
+  constructor(private router:Router,private formBuilder:FormBuilder,private angularFireAuth:UserService,private swal:SwalService) {
     this.formRegister = this.formBuilder.group({
       nombre: ['',[Validators.required,this.ValidadorEspacio]],
       clave: ['',[Validators.required,Validators.minLength(6)]],
@@ -33,16 +33,7 @@ export class RegisterComponent implements OnInit {
   Registro()
   {
     const user = this.formRegister.value
-    this.angularFireAuth.RegistrarUsuario(user).then(() =>{
-      this.angularFireAuth.CrearLogUsuario(this.usuario).then(() => {
-        this.mensaje.MostrarExito("¡Has sido registrado!","Seras redirigido al inicio").then(() =>{
-          this.formRegister.reset
-          this.router.navigate([''])
-        })
-      })
-    }).catch((error) => {
-      this.mensaje.MostrarError("¡ERROR!",this.angularFireAuth.ObtenerMensajeError(error.code))
-    })
+    this.angularFireAuth.RegistrarUsuario(user)
   }
 
   private ValidadorEspacio(control: AbstractControl): null | object {

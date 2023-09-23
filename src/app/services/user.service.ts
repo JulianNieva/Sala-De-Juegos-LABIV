@@ -43,24 +43,34 @@ export class UserService {
   {
     this.afAuth.signOut().then(() =>{
       this.seLogueo = false;
-      this.swal.MostrarExito("Seras redirigido...","Se ha cerado la sesion con exito!").then(() =>{
-        this.router.navigate(['login'])
+      this.swal.MostrarExito("Seras redirigido...","Se ha cerrado la sesion con exito!").then(() => {
+        this.router.navigate(['home'])
       })
     }).catch((error) => {
+      this.swal.MostrarError("¡Se produjo un error!",this.ObtenerMensajeError(error.errorCode))
       console.log(error)
     })
   }
 
   RegistrarUsuario(usuario:any)
   {
-    return this.afAuth.createUserWithEmailAndPassword(usuario.email,usuario.clave).then((data) =>{
+      this.afAuth.createUserWithEmailAndPassword(usuario.email,usuario.clave).then((data) =>{
         this.afStore.collection('usuarios').doc(data.user?.uid).set({
         idUsuario: data.user?.uid,
         nombre:usuario.nombre,
         email:usuario.email,
         registradoEn:moment().format('MMMM Do YYYY, h:mm:ss a'),
         rol:"Usuario"
+      }).then(() => {
+        usuario.idUsuario = data.user?.uid
+        this.CrearLogUsuario(usuario).then(() => {
+          this.swal.MostrarExito("¡Has sido registrado!","Seras redirigido al inicio").then(() =>{
+            this.router.navigate([''])
+          })
+        })
       })
+    }).catch((error) => {
+      this.swal.MostrarError("¡ERROR!",this.ObtenerMensajeError(error.errorCode))
     })
   }
 
@@ -71,7 +81,7 @@ export class UserService {
       fechaIngreso: moment().format('MMMM Do YYYY, h:mm:ss a')
     };
 
-    return this.afStore.collection("logsusuarios").add(data)
+    return this.afStore.collection("logsusuarios").add(data);
   }
 
   ObtenerMensajeError(errorCode: string): string {

@@ -34,17 +34,25 @@ export class LoginComponent {
   {
     const user = this.formLogin.value
 
-    this.angularFireAuth.Login(user).then(() =>{
-      this.angularFireAuth.CrearLogUsuario(this.usuario)
-      this.swal.MostrarExito("¡Has iniciado sesión!","Seras redirigido al inicio").then(() =>{
-        console.info(this.usuario)
-        this.formLogin.reset
-        this.router.navigate([''])
+    const inicio = await this.angularFireAuth.Login(user)
+
+    if(inicio)
+    {
+      this.angularFireAuth.user$.subscribe((user:any) => {
+        if (user) {
+          this.usuario = user;
+          this.angularFireAuth.CrearLogUsuario(this.usuario).then(() => {
+            this.swal.MostrarExito("¡Has iniciado sesión!","Seras redirigido al inicio").then(() =>{
+              this.CargarForm(-1)
+              this.router.navigate([''])
+            })
+          }).catch((error) => {
+            this.swal.MostrarError("ERROR",this.angularFireAuth.ObtenerMensajeError(error.code))
+            this.CargarForm(-1);
+          })
+        }
       })
-    }).catch((error) => {
-      this.swal.MostrarError("ERROR",this.angularFireAuth.ObtenerMensajeError(error.code))
-      this.CargarForm(-1);
-    })
+    }
   }
 
   CargarForm(user:number)
