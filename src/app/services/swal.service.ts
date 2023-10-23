@@ -8,7 +8,6 @@ export class SwalService {
 
   constructor() { }
 
-
   MostrarError(titulo:string,mensaje:string)
   {
     return Swal.fire({
@@ -28,5 +27,4 @@ export class SwalService {
       timer:2000
     })
   }
-  
 }
