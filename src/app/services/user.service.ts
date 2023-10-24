@@ -59,7 +59,7 @@ export class UserService {
         idUsuario: data.user?.uid,
         nombre:usuario.nombre,
         email:usuario.email,
-        registradoEn:moment().format('MMMM Do YYYY, h:mm:ss a'),
+        registradoEn:moment(new Date()).format('DD-MM-YYYY HH:mm:ss'),
         rol:"Usuario"
       }).then(() => {
         usuario.idUsuario = data.user?.uid
