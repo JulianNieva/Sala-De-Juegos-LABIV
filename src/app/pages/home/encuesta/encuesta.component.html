@@ -1,1 +1,126 @@
-<p>encuesta works!</p>
+<div class="background-image">
+  <h2 class="titulo">COMPLETE LA ENCUESTA</h2>
+  <form [formGroup]="formEncuesta" class="container contenedor-form" (ngSubmit)="EnviarEncuesta()">
+    <div class="row d-flex flex-wrap">
+      <div class="col-sm mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre" />
+        <small style="color: red; font-weight: bold" *ngIf="
+          formEncuesta.controls['nombre'].errors?.['required'] &&
+          formEncuesta.controls['nombre'].touched
+                    ">
+          El Nombre es requerido
+        </small>
+      </div>
+      <div class="col-sm mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input formControlName="apellido" type="text" class="form-control" id="apellido" placeholder="Apellido" />
+        <small style="color: red; font-weight: bold" *ngIf="
+          formEncuesta.controls['apellido'].errors?.['required'] &&
+          formEncuesta.controls['apellido'].touched
+                    ">
+          El Apellido es requerido
+        </small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm mb-3">
+        <label for="edad" class="form-label">Edad</label>
+        <input formControlName="edad" type="number" class="form-control" id="edad" placeholder="Edad" min="18"
+          max="99" />
+        <small style="color: red; font-weight: bold" *ngIf="
+          formEncuesta.controls['edad'].errors?.['required'] &&
+          formEncuesta.controls['edad'].touched
+                ">
+          La Edad es requerida
+        </small>
+        <small style="color: red; font-weight: bold" *ngIf="
+          formEncuesta.controls['edad'].errors?.['min'] ||
+                  (formEncuesta.controls['edad'].errors?.['max'] &&
+                  formEncuesta.controls['edad'].touched)
+                ">
+          La Edad debe ser de 18 a 99 años
+        </small>
+      </div>
+      <div class="col-sm mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input formControlName="telefono" type="text" class="form-control" id="telefono" placeholder="Teléfono" />
+        <small style="color: red;font-weight: bold" *ngIf="
+          formEncuesta.controls['telefono'].errors?.['required'] &&
+          formEncuesta.controls['telefono'].touched
+                ">
+          La Teléfono es requerido
+        </small>
+        <small style="color: red;font-weight: bold" *ngIf="
+                  (formEncuesta.controls['telefono'].errors?.['maxlength'] &&
+                  formEncuesta.controls['telefono'].touched)
+                ">
+          La Teléfono debe tener 10 digitos o menos
+        </small>
+        <small style="color: red;font-weight: bold" *ngIf="
+                  (formEncuesta.controls['telefono'].errors?.['pattern'] &&
+                  formEncuesta.controls['telefono'].touched)
+                ">
+          Se deben ingresar solo números
+        </small>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="preguntas">
+      <!-- INPUT CATEGORIA DE JUEGOS NUEVOS-->
+      <div class="col-sm mb-3">
+        <label class="form-label">¿Qué tipo de juegos te gustaría ver?</label>
+        <div class="form-check">
+          <input formControlName="nuevaCategoriaPuzzle" class="form-check-input" type="checkbox" value="puzzles"
+            id="puzzles" />
+          <label class="form-check-label" for="puzzles"> Puzzles </label>
+        </div>
+        <div class="form-check">
+          <input formControlName="nuevaCategoriaSimuladores" class="form-check-input" type="checkbox"
+            value="simuladores" id="simuladores" />
+          <label class="form-check-label" for="simuladores"> Simuladores </label>
+        </div>
+        <div class="form-check">
+          <input formControlName="nuevaCategoriaEstrategia" class="form-check-input" type="checkbox" value="estrategia"
+            id="estrategia" />
+          <label class="form-check-label" for="estrategia">Estrategias</label>
+        </div>
+        <div class="form-check">
+          <input formControlName="nuevaCategoriaMultijugador" class="form-check-input" type="checkbox"
+            value="multijugador" id="multijugador" />
+          <label class="form-check-label" for="multijugador">Multijugador</label>
+        </div>
+        <small *ngIf="nuevaCategoria" style="color: red;font-weight: bold">Elija una opción</small>
+      </div>
+      <!-- INPUT JUEGO FAVORITO -->
+      <div class="col-sm mb-7">
+        <label class="form-label">¿Cual fue el juego que más te gusto?</label>
+        <select style="width: 13rem" class="form-select" id="juegoFavorito" formControlName="juegoFavorito">
+          <option value="ahorcado">Ahorcado</option>
+          <option value="mayormenor">Mayor o Menor</option>
+          <option value="preguntados">Preguntados</option>
+          <option value="aventuramatematica">Aventura Matemática</option>
+        </select>
+      </div>
+      <!-- INPUT SUGERENCIA -->
+      <div class="col-sm mb-3">
+        <label for="comentario" class="form-label">¿Desea agregar algun comentario?</label>
+        <textarea class="form-control" id="comentario" rows="4" style="resize: none;background-color:black;" formControlName="comentario"></textarea>
+        <small style="color: red; font-weight: bold"
+        *ngIf="formEncuesta.controls['comentario'].errors?.['required'] && formEncuesta.controls['comentario'].touched">
+        Respuesta requerida
+      </small>
+      <small style="color: red; font-weight: bold"
+        *ngIf="(formEncuesta.controls['comentario'].errors?.['maxlength'] || formEncuesta.controls['comentario'].errors?.['minlength']) && formEncuesta.controls['comentario'].touched">
+        Debe contener entre 3 a 200 caracteres
+      </small>
+      </div>
+    </div>
+    <hr />
+    <button type="submit" class="btn-enviar">
+      Enviar encuesta
+    </button>
+  </form>
+</div>

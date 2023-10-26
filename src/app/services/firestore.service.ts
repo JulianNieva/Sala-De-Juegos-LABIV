@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { UserService } from './user.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,10 @@ export class FirestoreService {
   guardarResultado(resultado:any)
   {
     this.firestore.collection<any>('resultadosJuegos').add(resultado);
+  }
+
+  guardarEncuesta(encuesta:any)
+  {
+    return this.firestore.collection<any>('encuestas').add(encuesta);
   }
 }

@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.angularFireAuth.user$.subscribe((user:any) =>{
       if(user){
-        this.usuario = user
+        this.router.navigate([''])
       }
     });
   }

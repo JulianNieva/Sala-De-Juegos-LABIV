@@ -95,11 +95,14 @@ export class UserService {
       case 'auth/email-already-in-use':
         mensaje = 'El email ya está registrado.';
         break;
+      case 'auth/user-not-found':
+        mensaje = 'El usuario no existe.';
+        break;
       case 'auth/invalid-email':
         mensaje = 'El email no es valido.';
         break;
-      case 'auth/user-not-found':
-        mensaje = 'No se encontro el usuario';
+      case 'auth/wrong-password':
+        mensaje = 'La contraseña es inválida';
         break;
       default:
         mensaje = 'Se produjo un error';
