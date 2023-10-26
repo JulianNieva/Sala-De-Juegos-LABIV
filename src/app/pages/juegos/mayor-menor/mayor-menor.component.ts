@@ -62,7 +62,7 @@ export class MayorMenorComponent {
   cartasAAdivinar: any = [];
   puntuacion: number = 0;
   intentos: number = 10;
-  currentCard: any = null;
+  cartaActual: any = null;
   currentNumber: number = 0;
   indiceActual: number = 0;
 
@@ -93,18 +93,18 @@ export class MayorMenorComponent {
     this.botonJuego = 'Reiniciar Juego';
     this.cardList.sort(() => Math.random() - 0.5);
     this.cartasAAdivinar = this.cardList.slice(0, 11);
-    this.currentCard = this.cartasAAdivinar[this.indiceActual];
-    this.currentNumber = this.currentCard.number;
-    this.imagenCarta = `/assets/mayor-menor/${this.currentCard.type}_${this.currentCard.number}.png`;
+    this.cartaActual = this.cartasAAdivinar[this.indiceActual];
+    this.currentNumber = this.cartaActual.number;
+    this.imagenCarta = `/assets/mayor-menor/${this.cartaActual.type}_${this.cartaActual.number}.png`;
   }
 
   DeterminarMayorMenor(mayorMenor: string) {
     const previousNumber: number = this.currentNumber;
     this.indiceActual++;
     this.intentos--;
-    this.currentCard = this.cartasAAdivinar[this.indiceActual];
-    this.currentNumber = this.currentCard.number;
-    this.imagenCarta = `/assets/mayor-menor/${this.currentCard.type}_${this.currentCard.number}.png`;
+    this.cartaActual = this.cartasAAdivinar[this.indiceActual];
+    this.currentNumber = this.cartaActual.number;
+    this.imagenCarta = `/assets/mayor-menor/${this.cartaActual.type}_${this.cartaActual.number}.png`;
 
     switch (mayorMenor) {
       case 'menor':
@@ -115,7 +115,6 @@ export class MayorMenorComponent {
             'Mayor o Menor'
           );
         } else if (previousNumber === this.currentNumber) {
-          this.intentos++;
           this.notifyService.showInfo('Las cartas son iguales', 'Mayor o Menor');
         } else {
           this.notifyService.showError('No acertaste', 'Mayor o Menor');
@@ -129,7 +128,6 @@ export class MayorMenorComponent {
             'Mayor o Menor'
           );
         } else if (previousNumber === this.currentNumber) {
-          this.intentos++;
           this.notifyService.showInfo('Las cartas son iguales', 'Mayor o Menor');
         } else {
           this.notifyService.showError('No acertaste', 'Mayor o Menor');
@@ -143,9 +141,9 @@ export class MayorMenorComponent {
       if (this.puntuacion >= 3) {
         this.victoria = true;
         this.textoJuegoFinalizado = '¡GANASTE!';
-        this.swalService.MostrarExito("GANASTE","Has ganado: " + this.puntuacion + " puntos!");
+        this.swalService.MostrarExito("¡GANASTE!","Has ganado: " + this.puntuacion + " puntos!");
       } else {
-        this.swalService.MostrarError("PERDISTE","No conseguiste un minimo de 3 puntos!");
+        this.swalService.MostrarError("¡PERDISTE!","¡No conseguiste un minimo de 3 puntos!");
       }
       this.CrearResultado();
     }

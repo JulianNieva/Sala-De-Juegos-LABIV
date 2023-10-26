@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { SwalService } from 'src/app/services/swal.service';
 import { ToastifyService } from 'src/app/services/toastify.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -64,7 +65,8 @@ export class AhorcadoComponent {
   constructor(
     private toastService: ToastifyService,
     public userService: UserService,
-    private firestore:FirestoreService) 
+    private firestore:FirestoreService,
+    private swal:SwalService) 
     { }
 
   ngOnInit(): void {
@@ -83,10 +85,7 @@ export class AhorcadoComponent {
     this.palabraSeleccionada = Array(this.palabra.length).fill('_');
     this.juegoActivado = true;
     this.intentos = 6;
-    if(this.puntuacion == 0)
-    {
-      this.puntuacion = 0
-    }
+    this.puntuacion = 0
     this.imagen = 0;
     this.victoria = false;
     this.toastService.showInfo('Juego reiniciado', 'Ahorcado');
@@ -111,6 +110,7 @@ export class AhorcadoComponent {
             this.imagen = this.imagen + '_vic';
             this.juegoActivado = false;
             this.victoria = true;
+            this.swal.MostrarExito("¡GANASTE!",'¡Has adivinado la palabra ' + this.palabra+'!')
             this.toastService.showSuccess('Desea jugar de vuelta?', 'GANASTE');
             this.CrearResultado();
             break;
@@ -124,15 +124,11 @@ export class AhorcadoComponent {
           this.imagen++;
           this.toastService.showError('¡NO adivinaste!', 'Ahorcado');
           if (this.intentos === 0) {
-            this.toastService.showError('PERDISTE', 'Ahorcado');
+            this.swal.MostrarError("¡PERDISTE!",'La palabra era ' + this.palabra)
             this.botonReinicio = 'REINICIAR JUEGO'
             this.juegoActivado = false;
             this.CrearResultado();
           }
-        }
-
-        if (this.puntuacion > 0) {
-          this.puntuacion--;
         }
       } else if (letraYaSeleccionada) {
         this.toastService.showWarning('La letra ya fue adivinada', 'Ahorcado');

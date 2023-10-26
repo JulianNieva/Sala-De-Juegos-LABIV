@@ -15,20 +15,19 @@
   padding-top: 5rem;
 }
 
-.col{
-  background-color: rgba(118, 54, 124, 0.466);
-}
-
 .titulo-ahorcado {
   text-align: center;
-  color: aqua;
+  color: aquamarine;
   text-shadow: 2px 2px 2px black;
   font-weight: bold;
   width: max-content;
+  font-size: 50px;
   display: block;
   margin: 0 auto;
-  margin-top: 80px;
+  padding: 5px 15px;
+  margin-top: 5rem;
   margin-bottom: 1rem;
+  border-radius: 45px;
 }
 
 .palabra-adivinar {
@@ -62,13 +61,13 @@
 
 .btn-letra {
   padding: 1em 2em;
+  margin-right: 5px;
   font-size: 12px;
   font-weight: 500;
   color: #000;
   background-color: #fff;
   border: none;
-  border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
@@ -85,7 +84,6 @@
 .btn-letra:active {
   transform: translateY(-1px);
 }
-
 
 .btn-reiniciar {
   padding: 1.3em 3em;
