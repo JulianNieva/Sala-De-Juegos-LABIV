@@ -1,10 +1,8 @@
 .preguntados-container {
-  background-image: url("../../../../assets/fondos/preguntados.gif");
+  background-image: linear-gradient(to top, transparent 10%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0) 95%), url("../../../../assets/fondos/preguntados.gif");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  display: flex;
-  justify-content: center;
   position: fixed;
   height: 100%;
   width: 100%;

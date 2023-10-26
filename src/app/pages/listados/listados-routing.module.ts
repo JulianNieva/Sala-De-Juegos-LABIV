@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path:'listado-resultados',
     component:ListadoResultadosComponent
-  }
+  },
 ];
 
 @NgModule({
