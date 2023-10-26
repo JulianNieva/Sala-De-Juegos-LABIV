@@ -1,0 +1,46 @@
+.background-image {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, transparent 10%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0) 95%), url('../../../../assets/fondos/backresultados.gif');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    margin-top: 2rem;
+}
+
+.contenedor-tabla{
+    height: 5rem;
+    width: 10rem;
+    background: rgba(14, 9, 9, 0.1);
+    backdrop-filter: blur(35px);
+    border: 2px solid rgba(127, 255, 212, 0.541);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
+    padding: 30px 30px 30px 30px;
+    overflow: hidden;
+}
+
+.table {
+    --bs-table-color:rgba(0, 255, 255, 0.815);
+    --bs-table-bg:transparent;
+    --bs-table-hover-bg:#198754;
+    --bs-table-hover-color:white;
+    width: 100%;
+    position: relative;
+}
+
+td,th {
+    text-align: center;
+}
+
+.comentario {
+    max-width: 200px;;
+    max-height: 100px;
+    overflow-y: auto;
+}

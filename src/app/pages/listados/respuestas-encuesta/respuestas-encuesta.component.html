@@ -1,0 +1,38 @@
+<div class="background-image">
+    <h2 style="text-align: center; margin-top: 5rem;color: aquamarine;">Respuestas de Encuestas</h2>
+    <div class="table-responsive">
+        <table class="container table table-hover contenedor-tabla">
+            <thead>
+                <tr>
+                    <th scope="col">FECHA</th>
+                    <th scope="col">USUARIO</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">APELLIDO</th>
+                    <th scope="col">EDAD</th>
+                    <th scope="col">TELÉFONO</th>
+                    <th scope="col">JUEGO FAVORITO</th>
+                    <th scope="col">CATEGORIA DESEADA</th>
+                    <th scope="col">COMENTARIOS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tr" *ngFor="let encuesta of listaRespuestasEncuestas">
+                    <td>{{ encuesta.fecha }}</td>
+                    <td>{{ encuesta.usuario.nombre }}</td>
+                    <td>{{ encuesta.encuesta.nombre }}</td>
+                    <td>{{ encuesta.encuesta.apellido }}</td>
+                    <td>{{ encuesta.encuesta.edad }}</td>
+                    <td>{{ encuesta.encuesta.telefono }}</td>
+                    <td>{{ encuesta.encuesta.juegoFavorito }}</td>
+                    <td>
+                        {{ encuesta.encuesta.nuevaCategoriaEstrategia ? "Estrategia, " : ""}}
+                        {{ encuesta.encuesta.nuevaCategoriaMultijugador ? " Multijugador, " : ""}}
+                        {{ encuesta.encuesta.nuevaCategoriaPuzzle ? " Puzzle, " : "" }}
+                        {{ encuesta.encuesta.nuevaCategoriaSimuladores ? " Simuladores " : "" }}
+                    </td>
+                    <td class="comentario">{{ encuesta.encuesta.comentario }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

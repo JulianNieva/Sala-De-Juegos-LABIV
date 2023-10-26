@@ -32,24 +32,19 @@ export class LoginComponent {
 
   async Loguear() {
     const user = this.formLogin.value
-
-    await this.angularFireAuth.Login(user).then(() => {
-      this.angularFireAuth.user$.subscribe((user) => {
+    const inicio = await this.angularFireAuth.Login(user)
+    
+    if(inicio){
+      this.angularFireAuth.user$.subscribe((user: any) => {
         if (user) {
           this.usuario = user;
-          this.angularFireAuth.CrearLogUsuario(this.usuario).then(() => {
-            this.swal.MostrarExito("¡Has iniciado sesión!", "Seras redirigido al inicio").then(() => {
-              this.CargarForm(-1)
-              this.router.navigate([''])
-            })
-          })
+          this.CrearLogUsuario();
         }
       })
-    }).catch(error => {
-      this.swal.MostrarError("ERROR", this.angularFireAuth.ObtenerMensajeError(error.code))
-      this.CargarForm(-1);
-    })
-
+      this.swal.MostrarExito("Seras redirigido","¡Inicio de sesion exitoso!").then(() => {
+        this.CargarForm(-1)
+      })
+    }
   }
 
   CargarForm(user: number) {
@@ -70,5 +65,15 @@ export class LoginComponent {
         })
         break;
     }
+  }
+
+  CrearLogUsuario()
+  {
+    const log= {
+      fecha:moment(new Date()).format('DD-MM-YYYY HH:mm:ss'),
+      usuario: this.usuario
+    }
+
+    this.angularFireAuth.GuardarLogUsuario(log)
   }
 }
